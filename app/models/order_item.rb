@@ -10,10 +10,7 @@ class OrderItem < ActiveRecord::Base
 	after_create :delete_if_old
 	after_save :update_order_total_price
 	after_destroy :update_order_total_price
-
 	
-
-
 	def more_than_zero
 		if  !self.quantity.present? || self.quantity <= 0 
 			error_message = " must be more than zero!"
