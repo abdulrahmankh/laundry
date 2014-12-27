@@ -1,0 +1,2 @@
+module DiscountInfosHelper
+end

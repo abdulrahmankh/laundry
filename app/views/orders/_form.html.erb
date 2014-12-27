@@ -1,0 +1,24 @@
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :customer_id %><br>
+    <%= f.select :customer_id,  @customers.collect {|p| [p.name, p.id]} %>
+  </div>
+
+  <%= link_to 'Create customer', new_customer_path %>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<h1>Listing discount_infos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Discount</th>
+      <th>Active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @discount_infos.each do |discount_info| %>
+      <tr>
+        <td><%= discount_info.amount %></td>
+        <td><%= discount_info.discount %></td>
+        <td><%= discount_info.active %></td>
+        <td><%= link_to 'Show', discount_info %></td>
+        <td><%= link_to 'Edit', edit_discount_info_path(discount_info) %></td>
+        <td><%= link_to 'Destroy', discount_info, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Discount info', new_discount_info_path %>
