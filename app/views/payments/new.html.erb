@@ -1,5 +1,17 @@
-<h1>New payment</h1>
+<div class="well">
+<legend>Make a payment</legend>
+<div>
+	<h4>Customer name: <%= @order.customer.name.humanize %> | <span class="label label-info">Order Id: <%= @order.id %></span></h4>
+<h5>The order total is: <span class="label label-danger"><%= number_to_currency(@order.total_price) %></span></h5>
+<p>Order contains <%= @order_items.count %> item/s. <%= link_to new_order_item_path(order_id: @order.id), class: "btn btn-xs btn-primary" do %>
+	<i class="glyphicon glyphicon-edit"></i> Add or Edit Items
+<% end %></p>
 
+</div>
+
+<hr>
 <%= render 'form' %>
 
 <%= link_to 'Back', payments_path %>
+
+</div>

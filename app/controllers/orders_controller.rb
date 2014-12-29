@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   respond_to :html
 
   def index
-    @orders = Order.all
+    @orders = current_user.orders
     respond_with(@orders)
   end
 

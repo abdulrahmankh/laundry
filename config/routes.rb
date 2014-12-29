@@ -16,6 +16,10 @@ Rails.application.routes.draw do
 
   root to: "orders#index"
 
+  scope :payment do
+    get 'payment_procces', to: 'payments#new', as: 'new_payment_process'
+  end
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

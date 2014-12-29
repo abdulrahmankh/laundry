@@ -2,6 +2,7 @@ class OrderItem < ActiveRecord::Base
 
 	belongs_to :order
 	belongs_to :product
+	has_one :user, :through => :order
 
 	validates :quantity, presence: true
 	validate :more_than_zero

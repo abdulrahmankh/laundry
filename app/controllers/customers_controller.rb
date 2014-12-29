@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-
+  
   respond_to :html
 
   def index
@@ -23,7 +23,7 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
     @customer.save
-    respond_with(@customer)
+    redirect_to new_order_path
   end
 
   def update
@@ -40,6 +40,8 @@ class CustomersController < ApplicationController
     def set_customer
       @customer = Customer.find(params[:id])
     end
+
+    
 
     def customer_params
       params.require(:customer).permit(:name, :membership, :user_id)

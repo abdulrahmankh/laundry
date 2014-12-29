@@ -13,7 +13,24 @@ class PaymentsController < ApplicationController
   end
 
   def new
-    @payment = Payment.new
+    order_id = params[:order_id]
+
+    #checking that the order id was passed from the order page
+    if !order_id 
+      redirect_to new_order_path
+      return false
+    end
+
+    #checking the the params[:order_id] is owned by the current user (from helper)
+    if !current_user.check_order_ownership(order_id)
+      render 'public/404.html'
+      return false
+    end
+
+    @payment = Payment.new(order_id: order_id)
+    @order = Order.find_by_id(order_id)
+    @order_items = OrderItem.where('order_id = ?', order_id)
+    
     respond_with(@payment)
   end
 
@@ -22,6 +39,7 @@ class PaymentsController < ApplicationController
 
   def create
     @payment = Payment.new(payment_params)
+    @payment.user = current_user
     @payment.save
     respond_with(@payment)
   end
@@ -42,6 +60,6 @@ class PaymentsController < ApplicationController
     end
 
     def payment_params
-      params.require(:payment).permit(:order_id, :amount, :method, :user_id)
+      params.require(:payment).permit(:order_id, :amount, :method)
     end
 end

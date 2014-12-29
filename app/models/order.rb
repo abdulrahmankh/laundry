@@ -17,4 +17,14 @@ class Order < ActiveRecord::Base
 		self.save
 	end
 
+	def total_payment
+		payments = Payment.where('order_id = ?', self.id)
+		total = 0
+		payments.each do |payment|
+			total += payment.amount
+		end
+		return total
+	end
+
+
 end

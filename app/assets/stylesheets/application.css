@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+.center{
+	text-align: center;
+}
+
+.warning{
+	color: #f39c12;
+	font-size: 3em;
+}
+
+.big-text{
+	font-size: 4em;
+	font-weight: bold;
+}
+
+.payment{
+	color:#27ae60;
+}
+
+.outstanding{
+	color:#c0392b;
+}

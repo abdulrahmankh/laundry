@@ -11,10 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :order_id %><br>
-    <%= f.number_field :order_id %>
-  </div>
+
+
+  
+    <%= f.hidden_field :order_id %>
+
   <div class="field">
     <%= f.label :amount %><br>
     <%= f.text_field :amount %>
@@ -23,10 +24,7 @@
     <%= f.label :method %><br>
     <%= f.text_field :method %>
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
+ 
   <div class="actions">
     <%= f.submit %>
   </div>

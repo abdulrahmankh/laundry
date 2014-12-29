@@ -1,11 +1,14 @@
-<h1>Listing orders</h1>
+<div class="well">
+<legend>Your orders</legend>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Customer</th>
+      <th>Customer </th>
       <th>User</th>
       <th>Total price</th>
+      <th>Total payment</th>
+      <th>Outstanding</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,17 +16,31 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.customer_id %></td>
-        <td><%= order.user_id %></td>
-        <td><%= order.total_price %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= order.customer.name %></td>
+        <td><%= order.user.email %></td>
+        <td><%= number_to_currency(order.total_price) %></td>
+        <td class="payment"><%= number_to_currency(order.total_payment) %></td>
+        <td class="outstanding">(<%= number_to_currency(order.total_price - order.total_payment) %>)</td>
+        <td><%= link_to new_order_item_path(order_id: order.id), class: "btn btn-xs btn-primary" do %>
+          <span class="glyphicon glyphicon-list-alt"></span> More details
+          <% end %></td>
+        <td><%= link_to edit_order_path(order), class: "btn btn-xs btn-primary" do %>
+          <span class="glyphicon glyphicon-edit"></span> Edit
+          <% end %>
+
+        </td>
+        <td><%= link_to  order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" do %>
+         <span class="glyphicon glyphicon-trash"></span> Delete
+          <% end %></td>
       </tr>
+
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Order', new_order_path %>
+<%= link_to new_order_path, class: "btn btn-lg btn-success" do %>
+<span class="glyphicon glyphicon-plus"></span> Create an order
+          <% end %>
+</div>
